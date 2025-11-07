@@ -35,6 +35,10 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.5;
 }
 
+.title-second-line {
+    white-space: nowrap;
+}
+
 /* CTA Button */
 .cta-button {
     background: #27B07B;
@@ -196,7 +200,9 @@ h1, h2, h3, h4, h5, h6 {
     color: #353535;
     line-height: 1.6;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 40px;
+    word-break: normal;
+    overflow-wrap: break-word;
 }
 
 .highlight-green {
@@ -221,7 +227,8 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
     text-align: center;
     position: relative;
-    padding-top: 50px;
+    /* header is now in normal flow */
+    padding-top: 0;
     display: flex;
     flex-direction: column;
 }
@@ -230,12 +237,15 @@ h1, h2, h3, h4, h5, h6 {
     background: #0B3D2E;
     color: #fff;
     padding: 12px;
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
+    box-sizing: border-box;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* center heading horizontally */
+    min-height: 48px; /* unify header band height across cards */
 }
 
 .check-header h3 {
@@ -244,6 +254,15 @@ h1, h2, h3, h4, h5, h6 {
     color: #fff;
     margin: 0;
     line-height: 1.5;
+    white-space: nowrap; /* keep to one line to match "技術選定と実装戦略" height */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center; /* ensure centered text */
+}
+
+/* Ensure content has spacing below header */
+.check-list {
+    padding-top: 10px;
 }
 
 .check-icon-new {
@@ -322,7 +341,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 2px solid #FFFFFF;
     border-radius: 12px;
     padding: 25px;
-    max-width: 800px;
+    max-width: 900px;
     width: 100%;
     margin: 0 auto;
     display: flex;
@@ -363,20 +382,36 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.6;
     text-align: left;
     margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
 }
 
 .description-line {
     display: flex;
-    align-items: baseline;
+    align-items: flex-start;
+    gap: 0;
+    margin-left: 0;
+    padding-left: 0;
 }
 
 .description-line .bullet {
-    width: 1.2em;
+    width: 1.5em;
+    min-width: 1.5em;
+    max-width: 1.5em;
     flex-shrink: 0;
+    text-align: left;
+    display: inline-block;
+    padding-right: 0;
+    margin-right: 0;
 }
 
 .description-line .text {
-    white-space: nowrap;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: break-word;
+    padding-left: 0;
+    margin-left: 0;
 }
 
 .features-sidebar-new {
@@ -671,6 +706,30 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
+/* Smaller CTA buttons only inside report samples */
+.report-details-section .sample-card .cta-button {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #27B07B;
+    padding: 10px 16px;
+    border-radius: 6px;
+    min-width: auto;
+}
+
+.report-details-section .sample-card .cta-button:hover {
+    background: rgba(39, 176, 123, 0.08);
+    transform: none;
+}
+
+.report-details-section .sample-card .cta-button .arrow-icon {
+    width: auto;
+    height: auto;
+    background: transparent;
+    border-radius: 0;
+    font-size: 16px;
+    color: #fff;
+}
+
 .report-details-cta {
     display: flex;
     justify-content: center;
@@ -679,6 +738,86 @@ h1, h2, h3, h4, h5, h6 {
 
 .report-details-cta .cta-button {
     text-decoration: none;
+}
+
+/* Past Reports Section */
+.past-reports {
+    padding: 80px 0;
+    background: #fff;
+}
+
+/* Fix gray line to stay inside cards with rounded corners */
+.past-reports .grid a,
+.past-reports-list li a {
+    overflow: hidden !important;
+    position: relative;
+}
+
+.past-reports .grid a::before,
+.past-reports-list li a::before {
+    border-top-left-radius: 1rem !important;
+    border-bottom-left-radius: 1rem !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+/* Specific border-radius values for different card sizes */
+.past-reports .grid a.rounded-3xl::before,
+.past-reports-list li a.rounded-3xl::before {
+    border-top-left-radius: 1.5rem !important;
+    border-bottom-left-radius: 1.5rem !important;
+}
+
+.past-reports .grid a.rounded-2xl::before,
+.past-reports-list li a.rounded-2xl::before {
+    border-top-left-radius: 1rem !important;
+    border-bottom-left-radius: 1rem !important;
+}
+
+.past-reports-list {
+    list-style: none;
+    margin-top: 20px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.past-reports-list li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* Past Reports footer text + media */
+.past-reports-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.past-reports-footer .footer-text p {
+    color: #353535;
+    line-height: 1.6;
+    font-size: 36px;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .past-reports-footer .footer-text p {
+        font-size: 28px;
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 480px) {
+    .past-reports-footer .footer-text p {
+        font-size: 22px;
+    }
 }
 
 /* Market Growth Section */
@@ -766,6 +905,15 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     line-height: 1.5;
     margin-top: 15px;
+}
+
+.data-source a {
+    color: #0066cc;
+    text-decoration: underline;
+}
+
+.data-source a:hover {
+    color: #0052a3;
 }
 
 .rwa-market .data-source {
@@ -1022,10 +1170,125 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.6;
 }
 
+.trend-text-cta {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
 .trends-cta {
     display: flex;
     justify-content: center;
     margin-top: 60px;
+}
+
+/* Fixed CTA Button */
+.fixed-cta {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    margin: 0;
+}
+
+.fixed-cta .cta-button {
+    background: linear-gradient(135deg, #27B07B 0%, #1a8f63 100%);
+    box-shadow: 0 8px 30px rgba(39, 176, 123, 0.4), 
+                0 0 0 4px rgba(255, 255, 255, 0.3),
+                0 0 0 8px rgba(39, 176, 123, 0.2);
+    width: 130px !important;
+    height: 130px !important;
+    min-width: 130px !important;
+    max-width: 130px !important;
+    min-height: 130px !important;
+    max-height: 130px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    flex-shrink: 0;
+    overflow: visible;
+    position: relative;
+    animation: pulse-ring 2s infinite;
+    transition: all 0.3s ease;
+}
+
+.fixed-cta .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    border: 2px solid rgba(39, 176, 123, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 2s infinite;
+}
+
+.fixed-cta .cta-button:hover {
+    background: linear-gradient(135deg, #1a8f63 0%, #27B07B 100%);
+    transform: scale(1.05);
+    box-shadow: 0 10px 40px rgba(39, 176, 123, 0.5), 
+                0 0 0 4px rgba(255, 255, 255, 0.4),
+                0 0 0 8px rgba(39, 176, 123, 0.3);
+}
+
+.fixed-cta .cta-button span {
+    font-size: 16px;
+    line-height: 1.2;
+    text-align: center;
+    font-weight: 700;
+    white-space: nowrap;
+    display: block;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.05em;
+}
+
+.fixed-cta .arrow-icon {
+    width: 26px;
+    height: 26px;
+    font-size: 16px;
+    flex-shrink: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding-top: 4px;
+    padding-left: 4px;
+}
+
+@keyframes pulse-ring {
+    0% {
+        box-shadow: 0 8px 30px rgba(39, 176, 123, 0.4), 
+                    0 0 0 4px rgba(255, 255, 255, 0.3),
+                    0 0 0 8px rgba(39, 176, 123, 0.2);
+    }
+    50% {
+        box-shadow: 0 8px 30px rgba(39, 176, 123, 0.5), 
+                    0 0 0 4px rgba(255, 255, 255, 0.4),
+                    0 0 0 12px rgba(39, 176, 123, 0.15);
+    }
+    100% {
+        box-shadow: 0 8px 30px rgba(39, 176, 123, 0.4), 
+                    0 0 0 4px rgba(255, 255, 255, 0.3),
+                    0 0 0 8px rgba(39, 176, 123, 0.2);
+    }
+}
+
+@keyframes ripple {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
 }
 @media (min-width: 993px) {
     .trend-cards {
@@ -1590,6 +1853,12 @@ h1, h2, h3, h4, h5, h6 {
     height: auto;
 }
 
+/* Center the footer logo */
+.footer-logo {
+    display: flex;
+    justify-content: center;
+}
+
 .footer-description {
     font-size: 20px;
     font-weight: 350;
@@ -1606,8 +1875,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .social-link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     transition: opacity 0.3s ease;
+    vertical-align: middle;
 }
 
 .social-link:hover {
@@ -1623,6 +1894,9 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #fff;
     border-radius: 4px;
     padding: 4px;
+    width: 48px;
+    height: 48px;
+    vertical-align: middle;
 }
 
 .footer-copyright {
@@ -1675,6 +1949,69 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 992px) {
+    /* Feature Items - Tablet size adjustment */
+    .feature-item-new {
+        max-width: 100%;
+        padding: 20px;
+    }
+    
+    .feature-item-new h3 {
+        width: auto;
+        min-width: 200px;
+        flex-shrink: 0;
+        margin-bottom: 0 !important;
+    }
+    
+    .feature-item-content {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+        gap: 15px !important;
+    }
+    
+    .feature-item-description {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+        max-width: 100% !important;
+        flex: 1;
+        margin-top: 0 !important;
+    }
+    
+    /* Align bullet points consistently */
+    .description-line {
+        display: flex;
+        align-items: flex-start;
+        gap: 0;
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+    
+    .description-line .bullet {
+        width: 1.2em !important;
+        min-width: 1.2em !important;
+        max-width: 1.2em !important;
+        text-align: left;
+        display: inline-block;
+        flex-shrink: 0;
+        padding-right: 0;
+        margin-right: 0;
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+    }
+    
+    .description-line .text {
+        white-space: normal;
+        flex: 1;
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+    }
+    
+    .feature-item-description {
+        margin-left: 30px;
+        max-width: calc(100% - 250px);
+        flex: 1;
+        padding-left: 0;
+    }
+    
     .market-stats, .rwa-content {
         flex-direction: column;
         align-items: center;
@@ -1748,6 +2085,31 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 18px;
         padding: 15px 20px;
     }
+
+    .fixed-cta {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .fixed-cta .cta-button {
+        width: 110px !important;
+        height: 110px !important;
+        min-width: 110px !important;
+        max-width: 110px !important;
+        min-height: 110px !important;
+        max-height: 110px !important;
+    }
+
+    .fixed-cta .cta-button span {
+        font-size: 14px;
+    }
+
+    .fixed-cta .arrow-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 14px;
+        display: block;
+    }
     
     .requirements-text-new h2, .requirements-subtext {
         font-size: 28px;
@@ -1765,6 +2127,7 @@ h1, h2, h3, h4, h5, h6 {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
+        padding: 20px;
     }
 
     .feature-item-content {
@@ -1773,15 +2136,42 @@ h1, h2, h3, h4, h5, h6 {
         width: 100%;
         gap: 10px;
         margin-left: 0;
+        padding-left: 0;
     }
 
     .feature-item-new h3 {
         font-size: 18px;
         width: 100%;
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .feature-item-description {
+        margin-left: 0;
+        padding-left: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .description-line {
+        display: flex;
+        align-items: baseline;
+        gap: 0;
+        width: 100%;
+    }
+
+    .description-line .bullet {
+        width: 1.2em;
+        min-width: 1.2em;
+        flex-shrink: 0;
+        margin-left: 0;
     }
 
     .description-line .text {
         white-space: normal;
+        flex: 1;
+        word-break: normal;
+        overflow-wrap: break-word;
     }
     
     .report-details-section .detail-item h3 {
@@ -1911,6 +2301,31 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 16px;
         padding: 12px 16px;
     }
+
+    .fixed-cta {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .fixed-cta .cta-button {
+        width: 90px !important;
+        height: 90px !important;
+        min-width: 90px !important;
+        max-width: 90px !important;
+        min-height: 90px !important;
+        max-height: 90px !important;
+    }
+
+    .fixed-cta .cta-button span {
+        font-size: 12px;
+    }
+
+    .fixed-cta .arrow-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        display: block;
+    }
     
     .requirements-text-new h2, .requirements-subtext {
         font-size: 22px;
@@ -2039,6 +2454,27 @@ h1, h2, h3, h4, h5, h6 {
 
 /* PC Layout Overrides */
 @media (min-width: 993px) {
+    /* Feature Items - Wider on desktop */
+    .feature-item-new {
+        max-width: 900px;
+        justify-content: flex-end;
+        padding-left: 100px;
+        padding-right: 25px;
+    }
+    
+    .feature-item-new h3 {
+        width: 140px;
+        flex-shrink: 0;
+        text-align: right;
+    }
+    
+    .feature-item-description {
+        margin-left: 150px;
+        max-width: calc(100% - 290px);
+        flex: 1;
+        text-align: left;
+    }
+    
     /* Report Details Section */
     .report-details-content {
         display: grid;
