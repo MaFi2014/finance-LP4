@@ -54,7 +54,8 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     gap: 10px;
     transition: all 0.3s ease;
-    min-width: 320px;
+    width: 100%;
+    max-width: 320px;
     justify-content: center;
     text-decoration: none;
     position: relative;
@@ -90,7 +91,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .report-details-cta .cta-button {
-    min-width: 320px;
+    width: 100%;
+    max-width: 320px;
 }
 
 .cta-button:hover {
@@ -770,7 +772,9 @@ h1, h2, h3, h4, h5, h6 {
     border: 2px solid #27B07B;
     padding: 10px 16px;
     border-radius: 6px;
-    min-width: auto;
+    width: auto;
+    max-width: none;
+    margin: 0 auto;
 }
 
 .report-details-section .sample-card .cta-button:hover {
@@ -1315,8 +1319,6 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     line-height: 1;
-    padding-top: 4px;
-    padding-left: 4px;
 }
 
 @keyframes pulse-ring {
@@ -1364,7 +1366,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .trends-cta .cta-button {
-    min-width: 320px;
+    width: 100%;
+    max-width: 320px;
 }
 
 @media (min-width: 993px) {
@@ -1886,8 +1889,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .faq-footer .cta-button {
-    width: 320px !important;
-    min-width: 320px !important;
+    width: 100%;
+    max-width: 320px;
 }
 
 /* Footer */
@@ -2166,6 +2169,22 @@ h1, h2, h3, h4, h5, h6 {
         min-width: 100%;
         font-size: 18px;
         padding: 15px 20px;
+    }
+
+    .hero-cta {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .hero-cta .cta-button,
+    .report-details-cta .cta-button,
+    .trend-text-cta .cta-button,
+    .trends-cta .cta-button,
+    .faq-footer .cta-button {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
     }
 
     .fixed-cta {
