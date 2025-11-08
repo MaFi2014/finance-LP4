@@ -2209,7 +2209,9 @@ h1, h2, h3, h4, h5, h6 {
         width: 24px;
         height: 24px;
         font-size: 14px;
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .requirements-text-new h2, .requirements-subtext {
@@ -2425,7 +2427,9 @@ h1, h2, h3, h4, h5, h6 {
         width: 20px;
         height: 20px;
         font-size: 12px;
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .requirements-text-new h2, .requirements-subtext {
